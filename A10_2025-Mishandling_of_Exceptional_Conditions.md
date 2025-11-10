@@ -62,7 +62,7 @@
 
 例外的な状況は、入力検証の欠落、不備、または不完全さ、あるいはエラーが発生した関数ではなく、より上位のレベルでエラー処理が行われること、メモリ、権限、ネットワークの問題などの予期せぬ環境状態、一貫性のない例外処理、または全く処理されない例外などによって引き起こされる可能性があります。これらにより、システムは未知の予測不可能な状態に陥ります。アプリケーションが次に実行すべき命令を判断できない場合、例外処理が適切に行われていないことになります。発見が困難なエラーや例外は、アプリケーション全体のセキュリティを長期間にわたって脅かす可能性があります。
 
-例外的な状況への不適切な対処の不備によって、ロジック バグ、オーバー フロー、競合状態、不正なトランザクション、メモリ、状態、リソース、タイミング、認証、認可に関する問題など、さまざまなセキュリティ脆弱性が発生する可能性があります。これらの脆弱性は、システムまたはデータの機密性、可用性、完全性に悪影響を与える可能性があります。攻撃者は、アプリケーションの不完全なエラー処理を悪用して、これらの脆弱性を突きます。
+例外的な状況への不適切な対処によって、ロジック バグ、オーバー フロー、競合状態、不正なトランザクション、メモリ、状態、リソース、タイミング、認証、認可に関する問題など、さまざまなセキュリティ脆弱性が発生する可能性があります。これらの脆弱性は、システムまたはデータの機密性、可用性、完全性に悪影響を与える可能性があります。攻撃者は、アプリケーションの不完全なエラー処理を悪用して、これらの脆弱性を突きます。
 
 ## 防止方法
 
@@ -80,29 +80,23 @@
 
 **要修正**: サンプルをより現代的なものに更新してください。
 
-**Scenario #1:** Resource exhaustion via mishandling of exceptional conditions (Denial of Service) could be caused if the application catches exceptions when files are uploaded, but doesn’t properly release resources after. Each new exception leaves resources locked or otherwise unavailable, until all resources are used up.
+**シナリオ #1:** 例外的な状況への不適切な対処によるリソース枯渇（サービス拒否攻撃）は、アプリケーションがファイル アップロード時に例外を捕捉するものの、その後リソースを適切に解放しない場合に発生する可能性があります。例外が発生するたびにリソースがロックされたり使用不能になったりして、最終的にすべてのリソースが使い果たされてしまいます。
 
-**Scenario #2:** Sensitive data exposure via improper handling or database errors that reveals the full system error to the user. The attacker continues to force errors in order to use the sensitive system information to create a better SQL injection attack. The sensitive data in the user error messages are reconnaissance. 
+**シナリオ #2:** 不適切なエラー処理やデータベース エラーによってシステム エラーの詳細がユーザーに表示されてしまうことで、機密データが漏洩する可能性があります。攻撃者は、この機密性の高いシステム情報を利用して、より高度な SQL インジェクション攻撃を仕掛けるために、意図的にエラーを発生させ続けます。ユーザーに表示されるエラー メッセージに含まれる機密データは、攻撃者にとって偵察情報となります。
 
-**Scenario #3:** State corruption in financial transactions could be caused by an attacker interrupting a multi-step transaction via network disruptions. Imagine the transaction order was: debit user account, credit destination account, log transaction. If the system doesn’t properly roll back the entire transaction (fail closed) when there is an error part way through, the attacker could potentially drain the user’s account, or possibly a race condition that allows the attacker to send money to the destination multiple times.
-
+**シナリオ #3:** 金融取引における状態の破損は、攻撃者がネットワーク障害などを利用して複数ステップのトランザクションを中断させることで発生する可能性があります。例えば、トランザクションの順序が「ユーザーの口座からの引き落とし」「送金先口座への入金」「トランザクションのログ記録」だったとします。システムが途中でエラーが発生した場合にトランザクション全体を適切にロール バックしない（フェイル クローズしない）場合、攻撃者はユーザーの口座から資金を不正に引き出したり、競合状態を利用して送金先口座に複数回送金したりする可能性があります。
 
 ## 参考情報
 
 OWASP MASVS‑RESILIENCE
 
 - [OWASP Cheat Sheet: Logging](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)
-
 - [OWASP Cheat Sheet: Error Handling](https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html)
-
 - [OWASP Application Security Verification Standard (ASVS): V16.5 Error Handling](https://github.com/OWASP/ASVS/blob/master/5.0/en/0x25-V16-Security-Logging-and-Error-Handling.md#v165-error-handling)
-
 - [OWASP Testing Guide: 4.8.1 Testing for Error Handling](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/01-Testing_For_Improper_Error_Handling)
 
 * [Best practices for exceptions (Microsoft, .Net)](https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions)
-
 * [Clean Code and the Art of Exception Handling (Toptal)](https://www.toptal.com/developers/abap/clean-code-and-the-art-of-exception-handling)
-
 * [General error handling rules (Google for Developers)](https://developers.google.com/tech-writing/error-messages/error-handling)
 
 ## 対応する CWE の一覧
