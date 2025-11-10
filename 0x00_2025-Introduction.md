@@ -103,13 +103,14 @@ OWASP Dependency Check から抽出された National Vulnerability Database（N
 このリリース候補版は、2025 年 11 月 6 日にリリースされました。
 
 
-## Log イシューおよびプル リクエストの記録
+## イシューおよびプル リクエストの記録
 
 修正点や問題点があれば記録してください。
 
 ### プロジェクトのリンク:
 * [Homepage](https://owasp.org/www-project-top-ten/)
 * [GitHub repository](https://github.com/OWASP/Top10)
+
 
 
 
