@@ -63,7 +63,7 @@ OWASP Dependency Check から抽出された National Vulnerability Database（N
 
 2025 年版 Top 10 用に、OWASP は、悪用可能性スコアと影響度スコアの平均値を以下の方法で算出しました。まず、CVSS スコアが付与されているすべての CVE を CWE ごとにグループ化し、CVSSv3 スコアが付与されている CVE の割合と、CVSSv2 スコアが付与されている残りの  CVE の割合に基づいて、悪用可能性スコアと影響度スコアの両方に重み付けを行い、全体の平均値を算出しました。これらの平均値をデータセット内の CWE にマッピングし、リスク方程式の後半部分に対して、悪用可能性スコアと（技術的）影響度スコアとして使用しました。
 
-なぜ CVSS v4.0を使用しないのか、という疑問をお持ちの方もいらっしゃるかもしれません。その理由は、スコアリング アルゴリズムが根本的に変更され、CVSSv2 や CVSSv3 のように*悪用可能性*スコアや*影響度*スコアを簡単に算出できなくなったためです。今後の Top 10 では、CVSS v4.0の スコアリングを使用する方法を検討する予定ですが、2025 年版については適切な方法を見つけることができませんでした。
+なぜ CVSS v4.0 を使用しないのか、という疑問をお持ちの方もいらっしゃるかもしれません。その理由は、スコアリング アルゴリズムが根本的に変更され、CVSSv2 や CVSSv3 のように*悪用可能性*スコアや*影響度*スコアを簡単に算出できなくなったためです。今後の Top 10 では、CVSS v4.0 の スコアリングを使用する方法を検討する予定ですが、2025 年版については適切な方法を見つけることができませんでした。
 
 ## コミュニティ調査を利用する理由
 
@@ -98,18 +98,18 @@ OWASP Dependency Check から抽出された National Vulnerability Database（N
 
 
 
-## Release Candidate
+## リリース候補版
+
+このリリース候補版は、2025 年 11 月 6 日にリリースされました。
 
 
-This release candidate was originally released on 6th November 2025.
+## Log イシューおよびプル リクエストの記録
 
+修正点や問題点があれば記録してください。
 
-## Log issues and pull requests
-
-Please log any corrections or issues:
-
-### Project links:
+### プロジェクトのリンク:
 * [Homepage](https://owasp.org/www-project-top-ten/)
 * [GitHub repository](https://github.com/OWASP/Top10)
+
 
 
