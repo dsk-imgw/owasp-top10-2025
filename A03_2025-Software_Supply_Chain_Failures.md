@@ -116,7 +116,7 @@
 
 * 2019 年に発生した SolarWinds 社のシステム侵害事件。これにより、約 18,000 もの組織が被害を受けました。[https://www.npr.org/2021/04/16/985439655/a-worst-nightmare-cyberattack-the-untold-story-of-the-solarwinds-hack](https://www.npr.org/2021/04/16/985439655/a-worst-nightmare-cyberattack-the-untold-story-of-the-solarwinds-hack)
 
-**シナリオ #2:** 信頼できるベンダーが侵害され、特定の条件下でのみ悪意のある動作をするようになる。
+**シナリオ #2:** 信頼できるベンダーが侵害され、特定の条件下でのみ悪意のある動作をするようになるケース。
 
 * 2025 年に発生した Bybit の 15 億ドル相当の盗難事件は、標的のウォレットが使用されている場合にのみ実行されるウォレット ソフトウェアへのサプライチェーン攻撃によって引き起こされました。[https://thehackernews.com/2025/02/bybit-hack-traced-to-safewallet-supply.html](https://thehackernews.com/2025/02/bybit-hack-traced-to-safewallet-supply.html)
 
