@@ -81,69 +81,43 @@ OWASP Top 10 のリストは、対象となるトピックにおける最も重�
 * シークレット情報管理ツール、ライセンス、使用方法に関する文書を提供します。
 * 開発者が使用できるプライベート AI を提供します。理想的には、有用なセキュリティ文書が満載の RAG サーバー、より良い結果を得るためにチームが作成したプロンプト、そして組織で選択したセキュリティ ツールを呼び出す MCP サーバーでセットアップします。開発者に AI を安全に使用する方法を教えます。好むと好まざるとにかかわらず、開発者は AI を使うことになるからです。
 
-### Establish Continuous Application Security Testing:
+### 継続的なアプリケーション セキュリティ テストの確立
 
-*  Test the technical functions and integration with the IT architecture and coordinate business tests.
+* 技術的な機能と IT アーキテクチャとの統合をテストし、ビジネス テストを調整します。
+* 技術面とビジネス面の両方の観点から、「使用」と「悪用」のテストケースを作成します。
+* 内部プロセス、保護ニーズ、アプリケーションが想定する脅威レベルに応じて、セキュリティ テストを管理します。
+* セキュリティ テスト ツール（ファジング ツール、DAST など）、安全なテスト環境、およびそれらの使用方法に関するトレーニングを提供します。あるいは、テストを代行するか、テスターを雇用します。
+* 高いレベルの保証が必要な場合は、正式なペネトレーション テストに加え、ストレス テストとパフォーマンス テストの実施も検討します。
+* 開発者と協力し、バグ レポートに基づいて修正が必要な箇所を決定できるよう支援します。また、管理者が決定のための時間を確保できるようにします。
 
-* Create “use” and “abuse” test cases from technical and business perspectives.
+### 展開（ロールアウト）
 
-* Manage security tests according to internal processes, the protection needs, and the assumed threat level by the application.
+* アプリケーションの運用を開始し、必要に応じて以前使用していたアプリケーションから移行します。
+* 変更管理データベース (CMDB) とセキュリティ アーキテクチャを含むすべての文書を完成させます。
 
-* Provide security testing tools (fuzzers, DAST, etc.), a safe place to test, and training on how to use them, OR do the testing for them OR hire a tester
+### 運用と変更管理
 
-*  If you require a high level of assurance, consider a formal penetration test, as well as stress testing and performance testing.
+* 運用には、アプリケーションのセキュリティ管理に関するガイドライン（パッチ管理など）を含める必要があります。
+* ユーザーのセキュリティ意識を高め、ユーザビリティとセキュリティの両立に関する矛盾を管理します。
+* 変更を計画し、管理します（例: アプリケーションの新バージョンへの移行。OS、ミドルウェア、ライブラリなどのコンポーネントへの移行）、
+* すべてのアプリケーションがインベントリに登録され、重要な詳細がすべて文書化されていることを確実にします。CMDB、セキュリティ アーキテクチャ、管理策、対策、作業手順書やプロジェクト文書など、すべての文書を更新します。
+* すべてのアプリケーションに対して、ログ記録、監視、アラート発報を実行します。不足している場合は追加します。
+* 効果的かつ効率的な更新実施とパッチ適用のためのプロセスを作成します。
+* 定期的なスキャン スケジュールを作成します（動的スキャン、静的スキャン、シークレット情報スキャン、IaC スキャン、ソフトウェア構成分析など）。
+* セキュリティ バグの修正に関する SLA を作成します。
+* 従業員（そしてできれば顧客も）がバグを報告できる手段を提供します。
+* ソフトウェア攻撃の様相を理解し、監視ツールを備えた、トレーニングを受けたインシデント対応チームを編成します。
+* 自動攻撃を阻止するためのブロッキング ツールまたはシールド ツールを実行します。
+* 年 1 回（またはより頻繁に）、構成を強化します。
+* （アプリに必要なセキュリティレベルに応じて）少なくとも年 1 回、ペネトレーション テストを実施します。
+* ソフトウェア サプライチェーンの強化と保護のためのプロセスとツールを確立します。
+* 最も重要なアプリケーションと、それらの維持に使用するツールを含む、事業継続性と災害復旧計画を策定・更新します。
 
-*  Work with your developers to help them decide what they need to fix from the bug reports, and ensure their managers give them time to do it.
+### システムの廃止
 
-
-### Rollout:
-
-* Put the application in operation and migrate from previously used applications if needed.
-
-* Finalize all documentation, including the change management database (CMDB) and security architecture.
-
-
-### Operations and Change Management:
-
-*  Operations must include guidelines for the security management of the application (e.g. patch management).
-
-*  Raise the security awareness of users and manage conflicts about usability vs. security.
-
-*  Plan and manage changes, e.g. migrate to new versions of the application or other components like OS, middleware, and libraries.
-
-*  Ensure all apps are in your inventory, with all important details documented. Update all documentation, including in the CMDB and the security architecture, controls, and countermeasures, including any runbooks or project documentation.
-
-*  Perform logging, monitoring, and alerting for all apps. Add it if it’s missing.
-
-*  Create processes for effective and efficient updating and patching.
-
-*  Create regular scanning schedules (hopefully dynamic, static, secrets, IaC, and software composition analysis).
-
-*  SLAs for fixing security bugs.
-
-*  Provide a way for employees (and ideally also your customers) to report bugs.
-
-*  Establish a trained incident response team that understands what software attacks look like, observability tooling.
-
-*  Run blocking or shielding tools to stop automated attacks.
-
-*  Annual (or more often) hardening of configurations.
-
-*  At least annual penetration testing (depending upon the level assurance required for your app).
-
-*  Establish processes and tooling for hardening and protecting your software supply chain.
-
-*  Establish and update business continuity and disaster recovery planning that includes your most important applications and the tools you use to maintain them.
-
-
-### Retiring Systems:
-
-* Any required data should be archived. All other data should be securely wiped.
-
-* Securely retire the application, including deleting unused accounts and roles and permissions.
-
-* Set your application’s state to retired in the CMDB.
-
+* 必要なデータはすべてアーカイブする必要があります。その他のデータはすべてセキュアに消去する必要があります。
+* 未使用のアカウント、ロール、権限の削除など、アプリケーションをセキュアに廃止します。
+* CMDB でアプリケーションの状態を廃止に設定します。
 
 ## Using the OWASP Top 10 as a standard
 
@@ -153,10 +127,17 @@ One of the difficulties of using the OWASP Top 10 as a standard is that we docum
 
 Here are our recommendations for when it is appropriate to use the OWASP Top 10:
 
+## OWASP Top 10 の標準としての使用
+
+OWASP Top 10 は、主に意識向上を目的とした文書です。しかしながら、2003 年の発表以来、多くの組織がこれを事実上の業界標準として利用し続けています。OWASP Top 10 をコーディング標準やテスト標準として使用する場合は、これが最低限の標準であり、出発点に過ぎないことを理解しておく必要があります。
+
+OWASP Top 10 を標準として使用する際の難しさの一つは、文書化されているのがアプリケーション セキュリティのリスクであり、必ずしも簡単にテストできる問題ではないことです。例えば、[A06:2025-セキュリティが確保されていない設計](A06_2025-Insecure_Design.md) は、ほとんどのテストの範囲を超えています。また、ログ記録と監視が適切にかつ運用中に効果的に実装されているかどうかをテストすることも重要ですが、これはインタビューや効果的なインシデント対応のサンプル調査によってのみ実施可能です。静的コード解析ツールはログ記録の欠如を検出できますが、ビジネス ロジックやアクセス制御が重大なセキュリティ侵害を記録しているかどうかを判断できない可能性があります。ペネトレーション テスターは、テスト環境でインシデント対応が発動されたことしか判断できない可能性があります。これは、テスト環境は、本番環境と同じように監視されることはほとんどないためです。
+
+OWASP Top 10 の使用が適切な場合の推奨事項を以下に示します。
 
 <table>
   <tr>
-   <td><strong>Use Case</strong>
+   <td><strong>利用事例</strong>
    </td>
    <td><strong>OWASP Top 10 2025</strong>
    </td>
@@ -164,96 +145,96 @@ Here are our recommendations for when it is appropriate to use the OWASP Top 10:
    </td>
   </tr>
   <tr>
-   <td>Awareness
+   <td>意識向上
    </td>
-   <td>Yes
+   <td>適している
    </td>
    <td>
    </td>
   </tr>
   <tr>
-   <td>Training
+   <td>トレーニング
    </td>
-   <td>Entry level
+   <td>入門レベル
    </td>
-   <td>Comprehensive
-   </td>
-  </tr>
-  <tr>
-   <td>Design and architecture
-   </td>
-   <td>Occasionally
-   </td>
-   <td>Yes
+   <td>包括的
    </td>
   </tr>
   <tr>
-   <td>Coding standard
+   <td>設計とアーキテクチャ
    </td>
-   <td>Bare minimum
+   <td>稀に適する場合あり
    </td>
-   <td>Yes
-   </td>
-  </tr>
-  <tr>
-   <td>Secure Code review
-   </td>
-   <td>Bare minimum
-   </td>
-   <td>Yes
+   <td>適している
    </td>
   </tr>
   <tr>
-   <td>Peer review checklist
+   <td>コーディング標準
    </td>
-   <td>Bare minimum
+   <td>最低限のみ
    </td>
-   <td>Yes
-   </td>
-  </tr>
-  <tr>
-   <td>Unit testing
-   </td>
-   <td>Occasionally
-   </td>
-   <td>Yes
+   <td>適している
    </td>
   </tr>
   <tr>
-   <td>Integration testing
+   <td>セキュアなコード レビュー
    </td>
-   <td>Occasionally
+   <td>最低限のみ
    </td>
-   <td>Yes
-   </td>
-  </tr>
-  <tr>
-   <td>Penetration testing
-   </td>
-   <td>Bare minimum
-   </td>
-   <td>Yes
+   <td>適している
    </td>
   </tr>
   <tr>
-   <td>Tool support
+   <td>ピア レビューのチェックリスト
    </td>
-   <td>Bare minimum
+   <td>最低限のみ
    </td>
-   <td>Yes
+   <td>適している
    </td>
   </tr>
   <tr>
-   <td>Secure Supply Chain
+   <td>単体テスト
    </td>
-   <td>Occasionally
+   <td>稀に適する場合あり
    </td>
-   <td>Yes
+   <td>適している
+   </td>
+  </tr>
+  <tr>
+   <td>統合テスト
+   </td>
+   <td>稀に適する場合あり
+   </td>
+   <td>適している
+   </td>
+  </tr>
+  <tr>
+   <td>ペネトレーション テスト
+   </td>
+   <td>最低限のみ
+   </td>
+   <td>適している
+   </td>
+  </tr>
+  <tr>
+   <td>ツール支援
+   </td>
+   <td>最低限のみ
+   </td>
+   <td>適している
+   </td>
+  </tr>
+  <tr>
+   <td>セキュアなサプライチェーン
+   </td>
+   <td>稀に適する場合あり
+   </td>
+   <td>適している
    </td>
   </tr>
 </table>
 
 
-We would encourage anyone wanting to adopt an application security standard to use the [OWASP Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/) (ASVS), as it’s designed to be verifiable and tested, and can be used in all parts of a secure development lifecycle.
+アプリケーション セキュリティ標準の導入を検討されている方は、[OWASP Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/) (ASVS) の使用を推奨します。ASVS は検証とテストが可能なように設計されており、セキュアな開発ライフ サイクルのあらゆる段階で使用できます。
 
-The ASVS is the only acceptable choice for tool vendors. Tools cannot comprehensively detect, test, or protect against the OWASP Top 10 due to the nature of several of the OWASP Top 10 risks, with reference to [A06:2025-Insecure Design](A06_2025-Insecure_Design.md). OWASP discourages any claims of full coverage of the OWASP Top 10, because it’s simply untrue.
+ツール ベンダーにとって、ASVS は唯一の選択肢です。[A06:2025-セキュリティが確保されていない設計](A06_2025-Insecure_Design.md) に記載されているように、OWASP Top 10 のリスクのいくつかは、その性質上、ツールでは OWASP Top 10 を包括的に検出、テスト、または防御することはできません。OWASP は、OWASP Top 10 を完全に網羅しているという主張を推奨しません。それは、単に真実ではないからです。
