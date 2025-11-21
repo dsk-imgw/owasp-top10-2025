@@ -2,7 +2,7 @@
 
 # 次の段階
 
-OWASP Top 10は、設計上、最も重大なリスク 10 件に限定されています。すべての OWASP Top 10 には、掲載に向けて綿密に検討されたものの、最終的に採用されなかった「選ばれる一歩手前の」リスクが含まれています。他のリスクの方がより蔓延しており、影響も大きいからです。
+OWASP Top 10 は、設計上、最も重大なリスク 10 件に限定されています。すべての OWASP Top 10 には、掲載に向けて綿密に検討されたものの、最終的に採用されなかった「選ばれる一歩手前の」リスクが含まれています。他のリスクの方がより蔓延しており、影響も大きいからです。
 
 成熟したアプリケーション セキュリティ プログラムの構築を目指す組織、セキュリティ コンサルタント、あるいは製品の適用範囲を拡大したいと考えているツール ベンダーにとって、以下の 2 つの問題は、特定して対策を講じる価値が十分にあります。
 
@@ -284,3 +284,4 @@ Note: modern browsers use many levels of defenses to defend against such attacks
 * [CWE-788 Access of Memory Location After End of Buffer](https://cwe.mitre.org/data/definitions/788.html)
 
 * [CWE-824 Access of Uninitialized Pointer](https://cwe.mitre.org/data/definitions/824.html)
+
