@@ -119,14 +119,6 @@ OWASP Top 10 のリストは、対象となるトピックにおける最も重�
 * 未使用のアカウント、ロール、権限の削除など、アプリケーションをセキュアに廃止します。
 * CMDB でアプリケーションの状態を廃止に設定します。
 
-## Using the OWASP Top 10 as a standard
-
-The OWASP Top 10 is primarily an awareness document. However, this has not stopped organizations from using it as a de facto industry AppSec standard since its inception in 2003. If you want to use the OWASP Top 10 as a coding or testing standard, know that it is the bare minimum and just a starting point.
-
-One of the difficulties of using the OWASP Top 10 as a standard is that we document AppSec risks, and not necessarily easily testable issues. For example, [A06:2025-Insecure Design](A06_2025-Insecure_Design.md) is beyond the scope of most forms of testing. Another example is testing whether in-place, in-use, and effective logging and monitoring are implemented, which can only be done with interviews and requesting a sampling of effective incident responses. A static code analysis tool can look for the absence of logging, but it might be impossible to determine if business logic or access control is logging critical security breaches. Penetration testers may only be able to determine that they have invoked incident response in a test environment, which is rarely monitored in the same way as production.
-
-Here are our recommendations for when it is appropriate to use the OWASP Top 10:
-
 ## OWASP Top 10 の標準としての使用
 
 OWASP Top 10 は、主に意識向上を目的とした文書です。しかしながら、2003 年の発表以来、多くの組織がこれを事実上の業界標準として利用し続けています。OWASP Top 10 をコーディング標準やテスト標準として使用する場合は、これが最低限の標準であり、出発点に過ぎないことを理解しておく必要があります。
@@ -236,5 +228,6 @@ OWASP Top 10 の使用が適切な場合の推奨事項を以下に示します�
 
 
 アプリケーション セキュリティ標準の導入を検討されている方は、[OWASP Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/) (ASVS) の使用を推奨します。ASVS は検証とテストが可能なように設計されており、セキュアな開発ライフ サイクルのあらゆる段階で使用できます。
+
 
 ツール ベンダーにとって、ASVS は唯一の選択肢です。[A06:2025-セキュリティが確保されていない設計](A06_2025-Insecure_Design.md) に記載されているように、OWASP Top 10 のリスクのいくつかは、その性質上、ツールでは OWASP Top 10 を包括的に検出、テスト、または防御することはできません。OWASP は、OWASP Top 10 を完全に網羅しているという主張を推奨しません。それは、単に真実ではないからです。
