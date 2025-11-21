@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../../assets/css/RC-stylesheet.css" />
+<link rel="stylesheet" href="./assets/css/RC-stylesheet.css" />
 
 # 次の段階
 
@@ -282,4 +282,5 @@ Note: modern browsers use many levels of defenses to defend against such attacks
 * [CWE-467 Use of sizeof() on a Pointer Type](https://cwe.mitre.org/data/definitions/467.html)
 * [CWE-787 Out-of-bounds Write](https://cwe.mitre.org/data/definitions/787.html)
 * [CWE-788 Access of Memory Location After End of Buffer](https://cwe.mitre.org/data/definitions/788.html)
+
 * [CWE-824 Access of Uninitialized Pointer](https://cwe.mitre.org/data/definitions/824.html)
