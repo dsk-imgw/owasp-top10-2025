@@ -151,10 +151,9 @@ OWASP Top 10 は、設計上、最も重大なリスク 10 件に限定されて
 
 ## X02:2025 メモリ管理の失敗
 
-### 背景
+### 背景 
 
-Languagess like Java, C#, JavaScript/TypeScript (node.js), Go, and "safe" Rust are memory safe. Memory management problems tend to happen in non-memory safe languages such as C and C++. This category scored the lowest on the community survey and low in the data despite having the third most related CVEs. We believe this is due to the predominance of web applications over more traditional desktop applications. Memory management vulnerabilities frequently have the highest CVSS scores. 
-
+Java、C#、JavaScript/TypeScript (node.js)、Go、そして「安全な」Rust といった言語はメモリ セーフです。メモリ管理の問題は、C や C++ といったメモリ セーフではない言語で発生する傾向があります。このカテゴリは、関連する CVE が 3 番目に多いにもかかわらず、コミュニティ調査では最も低いスコアとなり、データでも低い数値となっています。これは、従来のデスクトップ アプリケーションよりも Web アプリケーションが主流になっているためだと考えられます。メモリ管理の脆弱性は、CVSS スコアが最も高いことがよくあります。
 
 ### スコア表
 
@@ -206,53 +205,48 @@ Languagess like Java, C#, JavaScript/TypeScript (node.js), Go, and "safe" Rust a
 
 ### 説明
 
-When an application is forced to manage memory itself, it is very easy to make mistakes. Memory safe languages are being used more often, but there are still many legacy systems in production worldwide, new low-level systems that require the use of non-memory safe languages, and web applications that interact with mainframes, IoT devices, firmware, and other systems that may be forced to manage their own memory. Representative CWEs are *CWE-120 Buffer Copy without Checking Size of Input ('Classic Buffer Overflow')* and *CWE-121 Stack-based Buffer Overflow*.
+* 変数に十分なメモリを割り当てていません。
+* 入力を検証せず、ヒープ、スタック、バッファのオーバーフローを引き起こしています。
+* 変数の型が保持できるよりも大きなデータ値を格納しています。
+* 未割り当てのメモリ空間またはアドレス空間を使用しようとしています。
+* オフ バイ ワン エラー（0 ではなく 1 からカウントする）を引き起こしています。
+* 解放済みのオブジェクトにアクセスしようとしています。
+* 初期化されていない変数を使用しています。
+* メモリ リークが発生しているか、アプリケーションが失敗するまで利用可能なメモリをすべて使い切っています。
 
-Memory management failures can happen when:
-
-* You do not allocate enough memory for a variable
-* You do not validate input, causing an overflow of the heap, the stack, a buffer
-* You store a data value that is larger than the type of the variable can hold 
-* You attempt to use unallocated memory or address spaces
-* You create off-by-one errors (counting from 1 instead of zero)
-* You try to access an object after its been freed
-* You use uninitialized variables
-* You leak memory or otherwise use up all available memory in error until our application fails
-
-Memory management failures can lead to failure of the application or even the entire system, see also [X01:2025 Lack of Application Resilience](#x012025-lack-of-application-resilience)
-
+メモリ管理の失敗は、アプリケーション、さらにはシステム全体の障害につながる可能性があります。[X01:2025 アプリケーションの回復力の欠如](#x012025-lack-of-application-resilience) も参照してください。
 
 ### 防止方法
 
-The best way to prevent memory management failures is to use a memory-safe language. Examples include Rust, Java, Go, C#, Python, Swift, Kotlin, JavaScript, etc. When creating new applications, try hard to convince your organization that it is worth the learning curve to switch to a memory-safe language. If performing a full refactor, push for a rewrite in a memory-safe language when it is possible and feasible.
+メモリ管理の失敗を防ぐ最善の方法は、メモリ セーフな言語を使用することです。例としては、Rust、Java、Go、C#、Python、Swift、Kotlin、JavaScript などがあります。新しいアプリケーションを開発する際には、メモリ セーフな言語への移行は学習に見合う価値があることを組織に強く納得させましょう。完全なリファクタリングを行う場合は、可能かつ実現可能な場合は、メモリ セーフな言語での書き換えを強く推奨してください。
 
-If you are unable to use a memory-safe language, perform the following:
+メモリセーフな言語を使用できない場合は、以下の手順を実行します。
 
-* Enable the following server features that make memory management errors harder to exploit: address space layout randomization (ASLR), Data Execution Protection (DEP), and Structured Exception Handling Overwrite Protection (SEHOP).
-* Monitor your application for memory leaks.
-* Validate all input to your system very carefully, and reject all input that does not meet expectations.
-* Study the language you are using and make a list of unsafe and more-safe functions, then share that list with your entire team. If possible, add it to your secure coding guideline or standard. For example, in C, prefer strncpy() over strcpy() and strncat() over strcat().
-* If your language or framework offers memory safety libraries, use them. For example: Safestringlib or SafeStr.
-* Use managed buffers and strings rather than raw arrays and pointers whenever possible.
-* Take secure coding training that focuses on memory issues and/or your language of choice. Inform your trainer that you are concerned about memory management failures.
-* Perform code reviews and/or static analyses.
-* Use compiler tools that help with memory management such as StackShield, StackGuard, and Libsafe.
-* Perform fuzzing on every input to your system.
-* If you have a penetration test performed, inform your tester that you are concerned about memory management failures and that you would like them to pay special attention to this while testing.
-*  Fix all compiler errors *and* warnings. Do not ignore warnings because your program compiles.
-* Ensure your underlying infrastructure is regularly patched, scanned, and hardened.
-* Monitor your underlying infrastructure specifically for potential memory vulnerabilities and other failures.
-* Consider using [canaries](https://en.wikipedia.org/wiki/Buffer_overflow_protection#Canaries) to protect your address stack from overflow attacks.
+* メモリ管理エラーの悪用を困難にする次のサーバー機能を有効にします: アドレス空間配置のランダム化 (ASLR)、データ実行保護 (DEP)、構造化例外処理上書き保護 (SEHOP)。
+* アプリケーションのメモリ リークを監視します。
+* システムへのすべての入力を慎重に検証し、想定を満たさない入力はすべて拒否します。
+* 使用している言語を調査し、安全でない関数と安全性の高い関数のリストを作成し、そのリストをチーム全体と共有します。可能であれば、セキュア コーディングのガイドラインまたは標準に追加します。例えば、C 言語では、strcpy() よりも strncpy()、strcat() よりも strncat() を優先します。
+* 使用している言語またはフレームワークでメモリ安全性ライブラリが提供されている場合は、それらを使用します。例えば、Safestringlib や SafeStr などです。
+* 可能な限り、生の配列やポインタではなく、マネージド バッファとマネージド 文字列を使用します。
+* メモリの問題や選択した言語に焦点を当てたセキュア コーディングのトレーニングを受講します。トレーナーに、メモリ管理の失敗が懸念されることを伝えます。
+* コード レビューや静的解析を実施します。
+* StackShield、StackGuard、Libsafe などのメモリ管理を支援するコンパイラ ツールを使用します。
+* システムへのすべての入力に対してファジングを実施します。
+* ペネトレーション テストを実施する場合は、メモリ管理の失敗が懸念事項であり、テスト中に特に注意するようテスターに​​伝えます。
+* すべてのコンパイラ エラーと警告を修正します。プログラムがコンパイルされるからといって、警告を無視してはなりません。
+* 基盤となるインフラストラクチャが定期的にパッチ適用、スキャン、堅牢化されていることを確実にします。
+* 基盤となるインフラストラクチャを、特に潜在的なメモリ脆弱性やその他の障害がないか監視します。
+* アドレス スタックをオーバーフロー攻撃から保護するために、[カナリア](https://en.wikipedia.org/wiki/Buffer_overflow_protection#Canaries) の使用を検討します。
 
 ### 攻撃シナリオの例
 
-**Scenario #1:** Buffer overflows are the most famous memory vulnerability, a situation where an attacker submits more information into a field than it can accept, such that it overflows the buffer created for the underlying variable. In a successful attack, the overflow characters overwrite the stack pointer, allowing the attacker to insert malicious instructions into your program.
+**シナリオ #1:** バッファ オーバーフローは最もよく知られているメモリ脆弱性です。これは、攻撃者がフィールドに許容量を超える情報を送信し、基になる変数用に作成されたバッファをオーバーフローさせる状況です。攻撃が成功すると、オーバーフローした文字列がスタック ポインタを上書きし、攻撃者がプログラムに悪意のある命令を挿入できるようになります。
 
-**Scenario #2:** Use-After-Free (UAF) happens often enough that it’s a semi-common browser bug bounty submission. Imagine a web browser processing JavaScript that manipulates DOM elements. The attacker crafts a JavaScript payload that creates an object (such as a DOM element) and obtains references to it. Through careful manipulation, they trigger the browser to free the object's memory while keeping a dangling pointer to it. Before the browser realizes the memory has been freed, the attacker allocates a new object that occupies the *same* memory space. When the browser tries to use the original pointer, it now points to attacker-controlled data. If this pointer was for a virtual function table, the attacker can redirect code execution to their payload. 
+**シナリオ #2:** ユーズ アフター フリー（UAF）は頻繁に発生するため、ブラウザのバグ報奨金プログラムでもよく取り上げられます。DOM 要素を操作する JavaScript を処理する Web ブラウザを想像してみてください。攻撃者は、オブジェクト（DOM 要素など）を作成し、その参照を取得する JavaScript ペイロードを作成します。巧妙な操作によって、ブラウザはオブジェクトのメモリを解放しますが、そのオブジェクトへのダングリング ポインタは保持されます。ブラウザがメモリが解放されたことに気付く前に、攻撃者は同じメモリ空間を占有する新しいオブジェクトを割り当てます。ブラウザが元のポインタを使用しようとすると、そのポインタは攻撃者が制御するデータを指すようになります。このポインタが仮想関数テーブルへのポインタだった場合、攻撃者はコード実行を自身のペイロードにリダイレクトできます。
 
-**Scenario #3:** A network service that accepts user input, doesn’t properly validate or sanitize it, then passes it directly to the logging function. The input from the user is passed to the logging function as syslog(user_input) instead of syslog("%s", user_input), which doesn’t specify the format. The attacker sends malicious payloads containing format specifiers such as %x to read stack memory (sensitive data disclosure) or %n to write to memory addresses. By chaining together multiple format specifiers they could map out the stack, locate important addresses, and then overwrite them. This would be a Format string vulnerability (uncontrolled string format). 
+**シナリオ #3:** ユーザー入力を受け付け、適切に検証またはサニタイズせずに、ログ出力関数に直接渡すネットワーク サービスがあるとします。ユーザーからの入力は、syslog("%s", user_input) ではなくフォーマットを指定しない syslog(user_input) としてログ出力関数に渡されます。攻撃者は、スタック メモリの読み取り（機密データの漏洩）のための %x や、メモリ アドレスへの書き込みのための %n などのフォーマット指定子を含む悪意のあるペイロードを送信します。複数のフォーマット指定子を連鎖させることで、スタックをマッピングし、重要なアドレスを特定して上書きすることができます。これは、フォーマット文字列の脆弱性（制御されていない文字列フォーマット）です。
 
-Note: modern browsers use many levels of defenses to defend against such attacks, including [browser sandboxing](https://www.geeksforgeeks.org/ethical-hacking/what-is-browser-sandboxing/#types-of-browser-sandboxing) ASLR, DEP/NX, RELRO, and PIE. A memory management failure attack on a browser is not a simple attack to carry out.
+注: 最新のブラウザは、[ブラウザ サンドボックス](https://www.geeksforgeeks.org/ethical-hacking/what-is-browser-sandboxing/#types-of-browser-sandboxing)、ASLR、DEP/NX、RELRO、PIE など、多段階の防御策を用いてこのような攻撃を防御しています。ブラウザに対するメモリ管理エラー攻撃は、簡単に実行できません。
 
 ### 参考情報
 
@@ -282,6 +276,4 @@ Note: modern browsers use many levels of defenses to defend against such attacks
 * [CWE-467 Use of sizeof() on a Pointer Type](https://cwe.mitre.org/data/definitions/467.html)
 * [CWE-787 Out-of-bounds Write](https://cwe.mitre.org/data/definitions/787.html)
 * [CWE-788 Access of Memory Location After End of Buffer](https://cwe.mitre.org/data/definitions/788.html)
-
 * [CWE-824 Access of Uninitialized Pointer](https://cwe.mitre.org/data/definitions/824.html)
-
