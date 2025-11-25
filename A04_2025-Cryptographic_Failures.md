@@ -92,7 +92,7 @@
 * 機密データを含む応答のキャッシュを無効にします。これには、CDN、Web サーバー、およびあらゆるアプリケーション キャッシュ (例: Redis) におけるキャッシュが含まれます。
 * データ分類に応じて必要なセキュリテ管理策を適用します。
 * FTP や SMTP などの暗号化されていないプロトコルは使用してはなりません。
-* パスワードは、Argon2、scrypt、bcrypt (レガシー システム)、PBKDF2-HMAC-SHA-256 など、ワーク ファクター (遅延係数) を持つ強力な適応型ソルト付きハッシュ関数を使用して保存します。bcrypt を使用しているレガシー システムについては、[OWASP OWASP Cheat Sheet: Password Storage](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html) で詳細なアドバイスを参照してます。
+* パスワードは、Argon2、scrypt、bcrypt (レガシー システム)、PBKDF2-HMAC-SHA-256 など、ワーク ファクター (遅延係数) を持つ強力な適応型ソルト付きハッシュ関数を使用して保存します。bcrypt を使用しているレガシー システムについては、[OWASP OWASP Cheat Sheet: Password Storage](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html) で詳細なアドバイスを参照できます。
 * 初期化ベクトルは、動作モードに適したものを選択する必要があります。これには、CSPRNG (暗号的にセキュアな擬似乱数生成器) の使用が含まれます。ナンスを必要とするモードでは、初期化ベクトル (IV) に CSPRNG は必要ありません。いかなる場合でも、固定キーに対して IV を 2 回使用してはなりません。
 * 単なる暗号化ではなく、常に認証付き暗号化を使用します。
 * 鍵は暗号学的にランダムに生成し、バイト配列としてメモリに保存する必要があります。パスワードを使用する場合は、適切なパスワード ベースの鍵導出関数を使用して鍵に変換する必要があります。
@@ -159,4 +159,5 @@
 * [CWE-780 Use of RSA Algorithm without OAEP](https://cwe.mitre.org/data/definitions/780.html)
 * [CWE-916 Use of Password Hash With Insufficient Computational Effort](https://cwe.mitre.org/data/definitions/916.html)
 * [CWE-1240 Use of a Cryptographic Primitive with a Risky Implementation](https://cwe.mitre.org/data/definitions/1240.html)
+
 * [CWE-1241 Use of Predictable Algorithm in Random Number Generator](https://cwe.mitre.org/data/definitions/1241.html)
