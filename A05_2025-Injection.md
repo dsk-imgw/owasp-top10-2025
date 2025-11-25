@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../../assets/css/RC-stylesheet.css" />
+<link rel="stylesheet" href=".・/assets/css/RC-stylesheet.css" />
 
 # A05:2025 インジェクション <img src="./assets/TOP_10_Icons_Final_Injection.png" style="height:80px;width:80px" align="right">
 
