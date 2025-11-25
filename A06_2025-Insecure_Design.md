@@ -56,51 +56,47 @@
 
 ## 説明
 
-Insecure design is a broad category representing different weaknesses, expressed as “missing or ineffective control design.” Insecure design is not the source for all other Top Ten risk categories. Note that there is a difference between insecure design and insecure implementation. We differentiate between design flaws and implementation defects for a reason, they have different root causes, take place at different times in the development process, and have different remediations. A secure design can still have implementation defects leading to vulnerabilities that may be exploited. An insecure design cannot be fixed by a perfect implementation as needed security controls were never created to defend against specific attacks. One of the factors that contributes to insecure design is the lack of business risk profiling inherent in the software or system being developed, and thus the failure to determine what level of security design is required.
 
-Three key parts of having a secure design are:
+セキュリティが確保されていない設計は、様々な弱点を表す広範なカテゴリーであり、「管理策設計の欠如、または効果のない管理策設計」と表現されます。セキュリティが確保されていない設計は、他の Top 10 リスク カテゴリすべてに当てはまるわけではありません。セキュリティが確保されていない設計とセキュリティが確保されていない実装には違いがあることに注意してください。設計上の欠陥と実装上の欠陥を区別するのには理由があります。それらは根本原因が異なり、開発プロセスの異なる時期に発生し、修正方法も異なるからです。セキュリティが確保された設計であっても、実装上の欠陥が悪用される可能性のある脆弱性につながる可能性があります。セキュリティが確保されていない設計は、特定の攻撃に対する防御のために必要なセキュリティ管理策が策定されていないため、完璧な実装によって修正することはできません。セキュリティが確保されていない設計につながる要因の 1 つは、開発中のソフトウェアまたはシステムに内在するビジネス リスク プロファイリングの欠如であり、その結果、必要なセキュリティ設計レベルを判断できないことです。
 
-* Gathering Requirements and Resource Management
-* Creating a Secure Design
-* Having a Secure Development Lifecycle
+セキュリティが確保された設計を実現するための 3 つの重要な要素は以下のとおりです。
+
+* 要件の収集とリソース管理
+* セキュリティが確保された設計の作成
+* セキュアな開発ライフサイクルの確立
 
 
 ### 要件とリソース管理
 
-Collect and negotiate the business requirements for an application with the business, including the protection requirements concerning confidentiality, integrity, availability, and authenticity of all data assets and the expected business logic. Take into account how exposed your application will be and if you need segregation of tenants (beyond those needed for access control). Compile the technical requirements, including functional and non-functional security requirements. Plan and negotiate the budget covering all design, build, testing, and operation, including security activities.
+アプリケーションのビジネス要件を収集し、ビジネス部門と交渉します。これには、すべてのデータ資産と想定されるビジネス ロジックの機密性、完全性、可用性、真正性に関する保護要件が含まれます。アプリケーションの公開範囲と、（アクセス制御に必要な範囲を超えて）テナントの分離が必要かどうかを考慮します。機能的および非機能的なセキュリティ要件を含む技術要件をまとめます。セキュリティ活動を含む、すべての設計、構築、テスト、運用をカバーする予算を計画し、交渉します。
 
+### セキュリティが確保された設計
 
-### セキュリティを確保した設計
-
-Secure design is a culture and methodology that constantly evaluates threats and ensures that code is robustly designed and tested to prevent known attack methods. Threat modeling should be integrated into refinement sessions (or similar activities); look for changes in data flows and access control or other security controls. In the user story development, determine the correct flow and failure states, ensure they are well understood and agreed upon by the responsible and impacted parties. Analyze assumptions and conditions for expected and failure flows to ensure they remain accurate and desirable. Determine how to validate the assumptions and enforce conditions needed for proper behaviors. Ensure the results are documented in the user story. Learn from mistakes and offer positive incentives to promote improvements. Secure design is neither an add-on nor a tool that you can add to software.
-
+セキュリティが確保された設計とは、脅威を継続的に評価し、既知の攻撃方法を防ぐためにコードが堅牢に設計・テストされていることを保証する文化と方法論です。脅威モデリングは、精緻化セッション（または類似の活動）に統合し、データフロー、アクセス制御、その他のセキュリティ管理策における変更点を探る必要があります。ユーザー ストーリーの開発では、正しいフローと障害状態を特定し、責任者と影響を受ける関係者がそれらを十分に理解し、合意していることを確認します。想定されるフローと失敗フローの前提条件と条件を分析し、それらが正確かつ望ましい状態であることを確実にします。前提条件を検証し、適切な動作に必要な条件を適用する方法を決定します。結果がユーザー ストーリーに文書化されていることを確実にします。失敗から学び、改善を促進するための積極的なインセンティブを提供します。セキュリティが確保された設計は、ソフトウェアに追加できるアドオンでもツールでもありません。
 
 ### セキュアな開発ライフサイクル
 
-Secure software requires a secure development lifecycle, a secure design pattern, a paved road methodology, a secure component library, appropriate tooling, threat modeling, and incident post-mortems that are used to improve the process. Reach out to your security specialists at the beginning of a software project, throughout the project, and for ongoing software maintenance. Consider leveraging the [OWASP Software Assurance Maturity Model (SAMM)](https://owaspsamm.org/) to help structure your secure software development efforts.
-
+セキュアなソフトウェアには、セキュアな開発ライフサイクル、セキュアな設計パターン、確立された方法論、セキュアなコンポーネント ライブラリ、適切なツール、脅威モデリング、そしてプロセス改善に活用されるインシデント事後分析が必要です。ソフトウェア プロジェクトの開始時、プロジェクト全体、そして継続的なソフトウェア維持において、セキュリティ専門家に相談します。セキュアなソフトウェア開発の取り組みを構築するには、[OWASP Software Assurance Maturity Model (SAMM)](https://owaspsamm.org/) の活用を検討します。
 
 ## 防止方法
 
-
-
-* Establish and use a secure development lifecycle with AppSec professionals to help evaluate and design security and privacy-related controls
-* Establish and use a library of secure design patterns or paved-road components
-* Use threat modeling for critical parts of the application such as authentication, access control, business logic, and key flows
-* Integrate security language and controls into user stories
-* Integrate plausibility checks at each tier of your application (from frontend to backend)
-* Write unit and integration tests to validate that all critical flows are resistant to the threat model. Compile use-cases *and* misuse-cases for each tier of your application.
-* Segregate tier layers on the system and network layers, depending on the exposure and protection needs
-* Segregate tenants robustly by design throughout all tiers
+* アプリケーション セキュリティ専門家と連携し、セキュリティとプライバシー関連の管理策の評価と設計を支援するセキュアな開発ライフサイクルを確立・運用します。
+* セキュアな設計パターンまたは既成コンポーネントのライブラリを確立・運用します。
+* 認証、アクセス制御、ビジネス ロジック、主要なフローなど、アプリケーションの重要な部分に脅威モデリングを適用します。
+* セキュリティ言語と管理策をユーザー ストーリーに統合します。
+* アプリケーションの各層（フロント エンドからバック エンドまで）に妥当性チェックを統合します。
+* すべての重要なフローが脅威モデルに耐性があることを検証するための単体テストと統合テストを作成します。アプリケーションの各層の利用事例と誤用ケースをまとめます。
+* リスクと保護のニーズに応じて、システム層とネットワーク層を分離します。
+* すべての層を通して、テナントを設計によって堅牢に分離します。
 
 
 ## 攻撃シナリオの例
 
-**シナリオ #1:** A credential recovery workflow might include “questions and answers,” which is prohibited by NIST 800-63b, the OWASP ASVS, and the OWASP Top 10. Questions and answers cannot be trusted as evidence of identity, as more than one person can know the answers. Such functionality should be removed and replaced with a more secure design.
+**シナリオ #1:** 資格情報の復旧ワークフローには「質問と回答」が含まれる場合がありますが、これは NIST 800-63b、OWASP ASVS、OWASP Top 10 で禁止されています。質問と回答は、複数の人が回答を知ることができるため、本人確認の証拠として信頼できません。このような機能は削除し、よりセキュアな設計に置き換える必要があります。
 
-**シナリオ #2:** A cinema chain allows group booking discounts and has a maximum of fifteen attendees before requiring a deposit. Attackers could threat model this flow and test if they can find an attack vector in the business logic of the application, e.g. booking six hundred seats and all cinemas at once in a few requests, causing a massive loss of income.
+**シナリオ #2:** ある映画館チェーンでは、団体予約割引を設けており、最大 15 名まで予約金を要求しています。攻撃者は、このフローを脅威モデル化し、アプリケーションのビジネス ロジックに攻撃ベクトルを見つけられるかどうかをテストできます。例えば、数回のリクエストで 600 席の座席とすべての映画館を一括予約し、莫大な収益損失を引き起こすといった攻撃です。
 
-**シナリオ #3:** A retail chain’s e-commerce website does not have protection against bots run by scalpers buying high-end video cards to resell on auction websites. This creates terrible publicity for the video card makers and retail chain owners, and enduring bad blood with enthusiasts who cannot obtain these cards at any price. Careful anti-bot design and domain logic rules, such as purchases made within a few seconds of availability, might identify inauthentic purchases and reject such transactions.
+**シナリオ #3:** ある小売チェーンの e コマース ウェブ サイトには、高級ビデオカードを購入しオークション サイトで転売する転売業者が運営するボットに対する保護対策が施されていません。これは、ビデオカード メーカーと小売チェーンのオーナーにとって悪評を招き、どんなに高くてもこれらのカードを入手できない愛好家との確執を招いてしまいます。慎重なアンチ ボット設計と、入手可能になってから数秒以内に購入を行うといったドメイン ロジック ルールを整備することで、不正な購入を識別し、そのような取引を拒否できる可能性があります。
 
 
 ## 参考情報
