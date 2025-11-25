@@ -74,29 +74,26 @@
 
 ## 防止方法
 
-Secure installation processes should be implemented, including:
+以下の項目を含む、セキュアなインストール プロセスを実装する必要があります。
 
-
-
-* A repeatable hardening process enabling the fast and easy deployment of another environment that is appropriately locked down. Development, QA, and production environments should all be configured identically, with different credentials used in each environment. This process should be automated to minimize the effort required to set up a new secure environment.
-* A minimal platform without any unnecessary features, components, documentation, or samples. Remove or do not install unused features and frameworks.
-* A task to review and update the configurations appropriate to all security notes, updates, and patches as part of the patch management process (see [A03:2025-](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/)Software Supply Chain Failures). Review cloud storage permissions (e.g., S3 bucket permissions).
-* A segmented application architecture provides effective and secure separation between components or tenants, with segmentation, containerization, or cloud security groups (ACLs).
-* Sending security directives to clients, e.g., Security Headers.
-* An automated process to verify the effectiveness of the configurations and settings in all environments.
-* Proactively add a central configuration to intercept excessive error messages as a backup.
-* If these varifications are not automated, they should be manually verified annually at a minimum.
- 
+* 適切にロック ダウンされた別の環境を迅速かつ容易にデプロイできる繰り返し可能な強化プロセス。開発環境、QA 環境、本番環境はすべて同一構成とし、各環境で異なる認証情報を使用する必要があります。このプロセスは自動化することで、新しいセキュアな環境の構築に必要な労力を最小限に抑えることができます。
+* 不要な機能・コンポーネント・文書・サンプルを含まない最小限のプラットフォーム。使用しない機能やフレームワークは削除するか、インストールしてはなりません。
+* パッチ管理プロセスの一環として、すべてのセキュリティ ノート、アップデート、パッチに適切な構成をレビューし、更新するタスク（[A03:2025-ソフトウェア サプライチェーンの失敗](A03_2025-Software_Supply_Chain_Failures.md) を参照）。クラウド ストレージの権限（S3 バケットの権限など）をレビューします。
+* セグメント化されたアプリケーション アーキテクチャは、セグメンテーション、コンテナ化、またはクラウド セキュリティ グループ（ACL）によって、コンポーネントまたはテナント間の効果的かつセキュアな分離を実現します。
+* セキュリティ ヘッダーなどのセキュリティ ディレクティブをクライアントに送信します。
+* すべての環境における構成と設定の有効性を検証する自動プロセス。
+* 過剰なエラーメッセージをバックアップとして傍受するための中央構成を事前対応的に追加します。
+* これらの検証が自動化されていない場合は、少なくとも年に 1 回は手動で検証する必要があります。
 
 ## 攻撃シナリオの例
 
-**シナリオ #1:** The application server comes with sample applications not removed from the production server. These sample applications have known security flaws that attackers use to compromise the server. Suppose one of these applications is the admin console, and default accounts weren't changed. In that case, the attacker logs in with the default password and takes over.
+**シナリオ #1:** アプリケーション サーバーには、本番サーバーから削除されていないサンプル アプリケーションが付属しています。これらのサンプル アプリケーションには、攻撃者がサーバーへの侵入に利用する既知のセキュリティ上の欠陥があります。これらのアプリケーションの 1 つが管理コンソールで、デフォルトのアカウントが変更されていないと仮定します。この場合、攻撃者はデフォルトのパスワードでログインし、サーバーを乗っ取ることができます。
 
-**シナリオ #2:** Directory listing is not disabled on the server. An attacker discovers they can simply list directories. The attacker finds and downloads the compiled Java classes, which they decompile and reverse engineer to view the code. The attacker then finds a severe access control flaw in the application.
+**シナリオ #2:** サーバー上でディレクトリ一覧表示が無効化されていません。攻撃者は、ディレクトリ一覧表示が簡単にできることを発見します。攻撃者は、コンパイル済みの Java クラスを見つけてダウンロードし、逆コンパイルしてリバース エンジニアリングを行い、コードを確認します。そして、アプリケーションに重大なアクセス制御の欠陥があることを発見します。
 
-**シナリオ #3:** The application server's configuration allows detailed error messages, such as stack traces to be returned to users. This potentially exposes sensitive information or underlying flaws, such as component versions that are known to be vulnerable.
+**シナリオ #3:** アプリケーション サーバーの設定により、スタック トレースなどの詳細なエラー メッセージをユーザーに返すことが可能になっています。これにより、脆弱性が知られているコンポーネントのバージョンなど、機密情報や潜在的な欠陥が明らかになる可能性があります。
 
-**シナリオ #4:** A cloud service provider (CSP) defaults to having sharing permissions open to the Internet. This allows sensitive data stored within cloud storage to be accessed.
+**シナリオ #4:** クラウド サービス プロバイダー (CSP) は、デフォルトで共有権限をインターネットに公開しています。これにより、クラウド ストレージに保存されている機密データにアクセスできるようになります。
 
 
 ## 参考情報
