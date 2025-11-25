@@ -1,11 +1,10 @@
 <link rel="stylesheet" href="./assets/css/RC-stylesheet.css" />
 
-# A08:2025 ソフトウェアとデータの整合性の不具合 <img src="./assets/TOP_10_Icons_Final_Software_and_Data_Integrity_Failures.png" style="height:80px;width:80px" align="right">
+# A08:2025 ソフトウェアまたはデータの整合性の不具合 <img src="./assets/TOP_10_Icons_Final_Software_and_Data_Integrity_Failures.png" style="height:80px;width:80px" align="right">
 
 ## 背景
 
-Software or Data Integrity Failures continues at #8, with a slight, clarifying name change from "Software *and* Data Integrity Failures". This category is focused on the failure to maintain trust boundaries and verify the integrity of software, code, and data artifacts at a lower level than Software Supply Chain Failures. This category focuses on making assumptions related to software updates and critical data, without verifying integrity. Notable Common Weakness Enumerations (CWEs) include *CWE-829: Inclusion of Functionality from Untrusted Control Sphere*, *CWE-915: Improperly Controlled Modification of Dynamically-Determined Object Attributes*, and *CWE-502: Deserialization of Untrusted Data*.
-
+ソフトウェアまたはデータの整合性の不具合は、引き続き 8 位にランクインしています。「ソフトウェア *および* データの整合性の不具合」という名称から、やや分かりやすく名称が変更されています。このカテゴリは、[A03:2025-ソフトウェア サプライチェーン](A03_2025-Software_Supply_Chain_Failures.md) の失敗よりも低いレベルで、信頼境界の維持とソフトウェア、コード、およびデータ アーティファクトの整合性検証の失敗に焦点を当てています。このカテゴリは、整合性を検証することなく、ソフトウェアの更新や重要なデータに関する憶測を行うことに焦点を当てています。注目すべき共通脆弱性リスト（CWE）には、*CWE-829: 信頼されていない制御範囲からの機能の取り込み*、*CWE-915: 動的に決定されたオブジェクト属性の不適切な制御による変更*、*CWE-502: 信頼されていないデータの逆シリアル化* などがあります。
 
 ## スコア表
 
@@ -57,29 +56,25 @@ Software or Data Integrity Failures continues at #8, with a slight, clarifying n
 
 ## 説明
 
-Software and data integrity failures relate to code and infrastructure that does not protect against invalid or untrusted code or data being treated as trusted and valid. An example of this is where an application relies upon plugins, libraries, or modules from untrusted sources, repositories, and content delivery networks (CDNs). An insecure CI/CD pipeline without consuming and providing software integety checks can introduce the potential for unauthorized access, insecure or malicious code, or system compromise. OneAnother example for this is a CI/CD that pulls code or artifacts from untrusted places and/or doesn’t verify them before use (by checking the signature or similar mechanism). Lastly, many applications now include auto-update functionality, where updates are downloaded without sufficient integrity verification and applied to the previously trusted application. Attackers could potentially upload their own updates to be distributed and run on all installations. Another example is where objects or data are encoded or serialized into a structure that an attacker can see and modify is vulnerable to insecure deserialization.
-
+ソフトウェアまたはデータの整合性の不具合は、無効または信頼できないコードやデータが信頼できる有効なものとして扱われることに対する保護対策を講じていないコードやインフラストラクチャに起因します。例えば、アプリケーションが、信頼できないソース、リポジトリ、コンテンツ配信ネットワーク（CDN）からのプラグイン、ライブラリ、またはモジュールに依存している場合などが挙げられます。ソフトウェアの整合性チェックを利用・提供しないセキュアでない CI/CDパイプラインは、不正アクセス、セキュアでないコードや悪意のあるコード、あるいはシステム侵害の危険性をはらんでいます。もう 1 つの例として、信頼できない場所からコードやアーティファクトをプルしたり、使用前に検証（署名の確認など）を行わない CI/CD が挙げられます。さらに、多くのアプリケーションには自動更新機能が搭載されており、十分な整合性検証を行わずに更新がダウンロードされ、以前は信頼されていたアプリケーションに適用されます。攻撃者は、独自の更新をアップロードし、それをすべてのインストール環境で配布・実行させる可能性があります。また、オブジェクトやデータが攻撃者が参照・変更できる構造にエンコードまたはシリアル化されている場合セキュアでない逆シリアル化に対して脆弱です。
 
 ## 防止方法
 
+* デジタル署名または同様の仕組みを使用して、ソフトウェアまたはデータが期待されるソースからのものであり、変更されていないことを検証します。
+* npm や Maven などのライブラリと依存関係が、信頼できるリポジトリのみを使用していることを確実にします。リスク プロファイルが高い場合は、内部で検証済みで信頼性のあるリポジトリをホストすることを検討します。
+* 悪意のあるコードや構成がソフトウェア パイプラインに持ち込まれる可能性を最小限に抑えるため、コードと構成の変更に対するレビュー プロセスが確立されていることを確実にします。
+* CI/CD パイプラインに適切な分離、構成、アクセス制御が備わっていることを確実にし、ビルドおよびデプロイ プロセスを流れるコードの整合性を確保します。
+* 署名なしまたは暗号化されていないシリアル化データを信頼できないクライアントから受信していないことを確実にし、シリアル化データの改ざんやリプレイを検出するための何らかの整合性チェックやデジタル署名が行われずに使用されないようにします。
 
+## 攻撃シナリオの例
 
-* Use digital signatures or similar mechanisms to verify the software or data is from the expected source and has not been altered.
-* Ensure libraries and dependencies, such as npm or Maven, are only consuming trusted repositories. If you have a higher risk profile, consider hosting an internal known-good repository that's vetted.
-* Ensure that there is a review process for code and configuration changes to minimize the chance that malicious code or configuration could be introduced into your software pipeline.
-* Ensure that your CI/CD pipeline has proper segregation, configuration, and access control to ensure the integrity of the code flowing through the build and deploy processes.
-* Ensure that unsigned or unencrypted serialized data is not received from untrusted clients and subsequently used without some form of integrity check or digital signature to detect tampering or replay of the serialized data.
+**シナリオ #1 信頼できないソースの Web 機能のの取り込み:** ある企業は、サポート機能を提供するために外部サービス プロバイダーを利用しています。便宜上、`myCompany.SupportProvider.com` から `support.myCompany.com` への DNS マッピングが設定されています。つまり、`myCompany.com` ドメインに設定されたすべての Cookie（認証 Cookie を含む）がサポート プロバイダーに送信されることになります。サポート プロバイダーのインフラストラクチャにアクセスできるユーザーは誰でも、`support.myCompany.com` にアクセスしたすべてのユーザーの Cookie を盗み、セッション ハイジャック攻撃を実行することができます。
 
+**シナリオ #2-1: 署名なしでの更新:** 多くの家庭用ルーター、セットトップ ボックス、デバイスのファームウェアなどは、署名されたファームウェアによるアップデートの検証を行っていません。署名のないファームウェアは攻撃者の標的として増加しており、今後さらに悪化すると予想されています。多くの場合、将来のバージョンで修正され以前のバージョンが期限切れになるまで待つ以外に対策手段がないため、これは大きな懸念事項です。
 
-## Example attack scenarios. 
+**シナリオ #2-2:** 開発者は、探しているパッケージの更新バージョンを見つけるのに苦労し、通常の信頼できるパッケージ マネージャーではなく、オンラインのウェブサイトからダウンロードします。パッケージは署名されていないため、整合性を確認する機会がありません。パッケージには悪意のあるコードが含まれています。
 
-**Scenario #1 Inclusion of Web Functionality from an Untrusted Source:** A company uses an external service provider to provide support functionality. For convenience, it has a DNS mapping for `myCompany.SupportProvider.com` to `support.myCompany.com`. This means that all cookies, including authentication cookies, set on the `myCompany.com` domain will now be sent to the support provider. Anyone with access to the support provider’s infrastructure can steal the cookies of all of your users that have visited `support.myCompany.com` and perform a session hijacking attack.
-
-**Scenario #2 Update without signing:** Many home routers, set-top boxes, device firmware, and others do not verify updates via signed firmware. Unsigned firmware is a growing target for attackers and is expected to only get worse. This is a major concern as many times there is no mechanism to remediate other than to fix in a future version and wait for previous versions to age out.
-
-Scenario #2 A developer has trouble finding the updated version of a package they are looking for, so they download it not from the regular, trusted package manager, but from a website online. The package is not signed, and thus there is no opportunity to ensure integrity. The package includes malicious code. 
-
-**Scenario #3 Insecure Deserialization:** A React application calls a set of Spring Boot microservices. Being functional programmers, they tried to ensure that their code is immutable. The solution they came up with is serializing the user state and passing it back and forth with each request. An attacker notices the "rO0" Java object signature (in base64) and uses the [Java Deserialization Scanner](https://github.com/federicodotta/Java-Deserialization-Scanner) to gain remote code execution on the application server.
+**シナリオ #3 セキュアでない逆シリアル化:** React アプリケーションは、Spring Boot マイクロサービス群を呼び出します。関数型プログラマーである開発者は、コードの不変性を確保しようと試みました。そこで開発者が思いついた解決策は、ユーザー状態をシリアル化し、リクエストごとにそれをやり取りすることでした。攻撃者は「rO0」という Java オブジェクト シグネチャ（base64形式）に気づき、[Java Deserialization Scanner](https://github.com/federicodotta/Java-Deserialization-Scanner) を使用して、アプリケーション サーバー上でリモート コード実行権限を取得します。
 
 ## 参考情報
 
