@@ -57,23 +57,20 @@
 
 ## 説明
 
-Security misconfiguration is when a system, application, or cloud service is set up incorrectly from a security perspective, creating vulnerabilities.
+セキュリティ設定のミスとは、システム、アプリケーション、またはクラウド サービスがセキュリティの観点から不適切に設定され、脆弱性が生じることです。
 
-The application might be vulnerable if:
+アプリケーションが脆弱になる可能性があるのは、以下のような場合です。
 
+* アプリケーション スタックのどこかに適切なセキュリティ強化が施されていません。またはクラウド サービスに対する権限が適切に構成されていません。
+* 不要な機能（不要なポート・サービス・ページ・アカウント、テスト用フレームワーク・権限など）が有効化またはインストールされています。
+* デフォルトのアカウントとそのパスワードが有効化され、変更されていません。
+* 過剰なエラー メッセージを遮断するための集中管理設定が不足しています。エラー処理によって、スタック トレースやその他の過剰な情報を含むエラー メッセージがユーザーに公開されます。
+* アップグレードされたシステムで、最新のセキュリティ機能が無効化されているか、セキュアに構成されていません。
+* 後方互換性を過度に優先し、セキュアでない構成になっています。
+* アプリケーション サーバー、アプリケーション フレームワーク（Struts、Spring、ASP.NETなど）、ライブラリ、データベースなどのセキュリティ設定がセキュアな値に設定されていません。
+* サーバーがセキュリティ ヘッダーまたはセキュリティ ディレクティブを送信しないか、それらがセキュアな値に設定されていません。
 
-
-* It is missing appropriate security hardening across any part of the application stack or improperly configured permissions on cloud services.
-* Unnecessary features are enabled or installed (e.g., unnecessary ports, services, pages, accounts, testing frameworks, or privileges).
-* Default accounts and their passwords are still enabled and unchanged.
-* A lack of central configuration for intercepting excessive error messages. Error handling reveals stack traces or other overly informative error messages to users.
-* For upgraded systems, the latest security features are disabled or not configured securely.
-* Excessive prioritization of backward compatibility leading to insecure configuration.
-* The security settings in the application servers, application frameworks (e.g., Struts, Spring, ASP.NET), libraries, databases, etc., are not set to secure values.
-* The server does not send security headers or directives, or they are not set to secure values.
-
-Without a concerted, repeatable application security configuration hardening process, systems are at a higher risk.
-
+協調的かつ反復可能なアプリケーション セキュリティ設定の強化プロセスがなければ、システムはより高いリスクにさらされます。
 
 ## 防止方法
 
