@@ -5,8 +5,7 @@
 
 ## 背景
 
-Logging & Alerting Failures retains its position at #9. This category has a slight name change to emphasize the alerting function needed to induce action on relevant logging events. This category will always be underrepresented in the data, and for the third time voted into a position in the list from the community survey participants. This category is incredibly difficult to test for, and has minimal representation in the CVE/CVSS data (only 723 CVEs); but can be very impactful for visibility and incident alerting and forensics. This category includes issues with *properly handling output encoding to log files (CWE-117), inserting sensitive data into log files (CWE-532), and insufficient logging (CWE-778).*
-
+ログ記録とアラートの失敗は、9 位を維持しました。このカテゴリは、関連するログ イベントへの対応を促すために必要なアラート機能を強調する目的で、若干の名称変更を行いました。このカテゴリは、データでは常に過小評価されており、コミュニティ アンケート参加者からの投票により 3 度目の選出となりました。このカテゴリはテストが非常に難しく、CVE/CVSS データへの反映も最小限（わずか 723 件）ですが、可視性、インシデント アラート、フォレンジックにおいて非常に大きな影響力を持つ可能性があります。このカテゴリには、*CWE-117: ログ ファイルへの出力エンコーディングの適切な処理*、*CWE-532: ログ ファイルへの機密データの挿入*、*CWE-778: 不十分なログ記録* に関する問題が含まれます。
 
 ## スコア表
 
@@ -58,63 +57,60 @@ Logging & Alerting Failures retains its position at #9. This category has a slig
 
 ## 説明
 
-Without logging and monitoring, attacks and breaches cannot be detected, and without alerting it is very difficult to respond quickly and effectively during a security incident. Insufficient logging, continuous monitoring, detection, and alerting to initiate active responses occurs any time:
+ログ記録と監視がなければ、攻撃や侵害を検知できず、アラートがなければセキュリティ インシデント発生時に迅速かつ効果的に対応することは非常に困難です。積極的な対応を開始するためのログ記録、継続的な監視、検知、アラートが不十分な状況は、以下のような例がありますが、常に発生します。
 
-
-* Auditable events, such as logins, failed logins, and high-value transactions, are not logged or logged inconsistently (for instance, only logging successful logins, but not failed attempts).
-* Warnings and errors generate no, inadequate, or unclear log messages.
-* The integrity of logs is not properly protected from tampering.
-* Logs of applications and APIs are not monitored for suspicious activity.
-* Logs are only stored locally, and not properly backedup.
-* Appropriate alerting thresholds and response escalation processes are not in place or effective. Alerts are not received or reviewed within a reasonable amount of time.
-* Penetration testing and scans by dynamic application security testing (DAST) tools (such as Burp or ZAP) do not trigger alerts.
-* The application cannot detect, escalate, or alert for active attacks in real-time or near real-time.
-* You are vulnerable to sensitive information leakage by making logging and alerting events visible to a user or an attacker (see [A01:2025-Broken Access Control](A01_2025-Broken_Access_Control.md)), or by logging sensitive information that should not be logged (such as PII or PHI).
-* You are vulnerable to injections or attacks on the logging or monitoring systems if log data is not correctly encoded.
-* The application is missing or mishandling errors and other exceptional conditions, such that the system is unaware there was an error, and is therefore unable to log there was a problem.
-* Adequate ‘use cases’ for issuing alerts are missing or outdated to recognize a special situation.
-* Too many false positive alerts make it impossible to distinguish important alerts from unimportant ones, resulting in them being recognized too late or not at all (physical overload of the SOC team).
-* Detected alerts cannot be processed correctly because the playbook for the use case is incomplete, out of date, or missing.
-
+* ログイン、ログインの失敗、高価値のトランザクションなどの監査対象イベントがログに記録されていない、または一貫性のないログ記録が行われています（例えば、成功したログインのみが記録され、失敗したログインは記録されない）。
+* 警告やエラーが発生しても、ログ メッセージがまったく生成されない、不十分なログメッセージしか生成されない、あるいは不明瞭なログ メッセージが生成されます。
+* ログの整合性が改ざんから適切に保護されていません。
+* アプリケーションや API のログは、不審なアクティビティを監視していません。
+* ログはローカルにのみ保存され、適切にバックアップされていません。
+* 適切なアラートしきい値と対応エスカレーション プロセスが整備されていないか、有効ではありません。アラートは妥当な時間内に受信またはレビューされていません。
+* 侵入テストおよび動的アプリケーション セキュリティ テスト (DAST) ツール（Burp や ZAP など）によるスキャンでは、アラートがトリガーされません。
+* アプリケーションは、アクティブな攻撃をリアルタイムまたはほぼリアルタイムで検出、エスカレーション、またはアラートすることができません。
+* ログ記録およびアラート イベントをユーザーまたは攻撃者に公開したり（[A01:2025-アクセス制御の不備](A01_2025-Broken_Access_Control.md) を参照）、ログに記録すべきでない機密情報（PII や PHI など）をログに記録したりすると、機密情報の漏洩に対して脆弱になります。
+* ログ データが正しくエンコードされていない場合、ログ記録システムまたは監視システムへのインジェクションや攻撃に対して脆弱になります。
+* アプリケーションがエラーやその他の例外的な状況を認識していない、または適切に処理していないため、システムがエラーを認識できず、問題が発生したことをログに記録できません。
+* アラートを発行するための適切な「ユース ケース」が不足しているか、古くなっているため、特別な状況を認識できません。
+* 誤検知アラートが多すぎると、重要なアラートと重要でないアラートを区別できなくなり、アラートの認識が遅れたり、まったく認識されなかったりします（SOC チームの物理的な負荷が高まります）。
+* ユース ケースのプレイブックが不完全、古い、または不足しているため、検出されたアラートを正しく処理できません。
 
 ## 防止方法
 
-Developers should implement some or all the following controls, depending on the risk of the application:
+開発者は、アプリケーションのリスクに応じて、以下の管理策の一部またはすべてを実装する必要があります。
+
+* ログイン、アクセス制御、サーバー側入力検証の失敗をすべて、十分なユーザー コンテキストでログに記録し、疑わしいアカウントや悪意のあるアカウントを特定できるようにし、後で行われるフォレンジック分析に十分な時間保持できるようにします。
+* セキュリティ管理策を含むアプリケーションのすべての部分が、成功か失敗かに関わらずログに記録されるようにします。
+* ログ管理ソリューションが容易に使用できる形式でログが生成されるようにします。
+* ログデータが正しくエンコードされ、ログ システムや監視システムへのインジェクションや攻撃を防止できるようにします。
+* すべてのトランザクションに、改ざんや削除を防ぐための整合性管理策（追記専用のデータベース テーブルなど）を備えた監査証跡があることを確実にします。
+* エラーが発生したすべてのトランザクションがロール バックされ、最初からやり直されるようにします。常にフェイル クローズします。
+* アプリケーションまたはそのユーザーが疑わしい動作をした場合は、アラートを発行します。開発者がこれに対処するためのコードを記述したり、システムを購入したりできるように、このトピックに関するガイダンスを作成します。
+* DevSecOps およびセキュリティ チームは、セキュリティ オペレーション センター (SOC) チームによって疑わしいアクティビティが検出され、迅速に対応できるように、プレイブックを含む効果的な監視およびアラートのユース ケースを確立する必要があります。
+* 攻撃者を罠にかける「ハニー トークン」を、アプリケーション（データベース、データなど）に、実在のユーザー ID や技術的ユーザー ID として追加します。ハニー トークンは通常の業務では使用されないため、アクセスがあった場合、ほぼ誤検知なしでアラートを生成できるログ データが生成されます。
+* アラートの誤検知率を低減するために、動作分析と AI サポートをオプションで追加することも可能です。
+* 米国国立標準技術研究所（NIST）800-61r2 以降に準拠したインシデント対応・復旧計画を策定または導入します。ソフトウェア開発者にアプリケーション攻撃やインシデントの発生状況を指導し、報告できるようにします。
+
+OWASP ModSecurity Core Rule Set などの商用およびオープン ソースのアプリケーション保護製品や、Elasticsearch、Logstash、Kibana（ELK）スタックなどのオープン ソースのログ相関ソフトウェアには、カスタム ダッシュボードとアラート機能が搭載されており、これらの問題への対処に役立ちます。ほぼリアルタイムで攻撃に対応したりブロックしたりするのに役立つ商用の可観測性ツールもあります。
 
 
-* Ensure all login, access control, and server-side input validation failures can be logged with sufficient user context to identify suspicious or malicious accounts and held for enough time to allow delayed forensic analysis.
-* Ensure that every part of your app that contains a security control is logged, whether it succeeds or fails.
-* Ensure that logs are generated in a format that log management solutions can easily consume.
-* Ensure log data is encoded correctly to prevent injections or attacks on the logging or monitoring systems.
-* Ensure all transactions have an audit trail with integrity controls to prevent tampering or deletion, such as append-only database tables or similar.
-* Ensure all transactions that throw an error are rolled back and started over. Always fail closed.
-* If your application or its users behave suspiciously, issue an alert. Create guidance for your developers on this topic so they can code against this or buy a system for this.
-* DevSecOps and security teams should establish effective monitoring and alerting use cases including playbooks such that suspicious activities are detected and responded to quickly by the Security Operations Center (SOC) team.
-* Add ‘honeytokens’ as traps for attackers into your application e.g. into the database, data, as real and/or technical user identity. As they are not used in normal business, any access generates logging data that can be alerted with nearly no false positives.
-* Behavior analysis and AI support could be optionally an additional technique to support low rates of false positives for alerts.
-* Establish or adopt an incident response and recovery plan, such as National Institute of Standards and Technology (NIST) 800-61r2 or later. Teach your software developers what application attacks and incidents look like, so they can report them.
+## 攻撃シナリオの例
 
-There are commercial and open-source application protection products such as the OWASP ModSecurity Core Rule Set, and open-source log correlation software, such as the Elasticsearch, Logstash, Kibana (ELK) stack, that feature custom dashboards and alerting that may help you combat these issues. There are also commercial observability tools that can help you respond to or block attacks in close to real-time.
+**シナリオ #1:** 小児医療保険会社のウェブサイト運営者は、監視とログ記録の不足により、侵害を検知できませんでした。外部関係者から、攻撃者が 350 万人以上の小児の数千件の機密性の高い医療記録にアクセスし、改ざんしたとの報告を受けました。事後調査の結果、ウェブサイト開発者が重大な脆弱性に対処していなかったことが判明しました。システムのログ記録や監視が不十分であったため、データ侵害は 2013 年から 7 年以上にわたって進行していた可能性があります。
 
+**シナリオ #2:** インドの大手航空会社で、パスポートやクレジット カード情報を含む、10 年以上にわたる数百万人の乗客の個人データが漏洩しました。データ漏洩はサード パーティのクラウド ホスティング プロバイダーで発生し、プロバイダーはしばらくして航空会社に漏洩を通知しました。
 
-## Example attack scenarios.
-
-**Scenario #1:** A children's health plan provider's website operator couldn't detect a breach due to a lack of monitoring and logging. An external party informed the health plan provider that an attacker had accessed and modified thousands of sensitive health records of more than 3.5 million children. A post-incident review found that the website developers had not addressed significant vulnerabilities. As there was no logging or monitoring of the system, the data breach could have been in progress since 2013, a period of more than seven years.
-
-**Scenario #2:** A major Indian airline had a data breach involving more than ten years' worth of personal data of millions of passengers, including passport and credit card data. The data breach occurred at a third-party cloud hosting provider, who notified the airline of the breach after some time.
-
-**Scenario #3:** A major European airline suffered a GDPR reportable breach. The breach was reportedly caused by payment application security vulnerabilities exploited by attackers, who harvested more than 400,000 customer payment records. The airline was fined 20 million pounds as a result by the privacy regulator.
+**シナリオ #3:** 欧州の大手航空会社が GDPR 報告義務違反に見舞われました。この違反は、攻撃者が決済アプリケーションのセキュリティ脆弱性を悪用したことが原因と報じられており、攻撃者は 40 万件以上の顧客決済記録を盗み出しました。この結果、航空会社は GDPR 規制当局から 2,000 万ポンドの罰金を科されました。
 
 
 ## 参考情報
 
--   [OWASP Proactive Controls: C9: Implement Logging and Monitoring](https://top10proactive.owasp.org/archive/2024/the-top-10/c9-security-logging-and-monitoring/)
--   [OWASP Application Security Verification Standard: V16 Security Logging and Error Handling](https://github.com/OWASP/ASVS/blob/v5.0.0/5.0/en/0x25-V16-Security-Logging-and-Error-Handling.md)
--   [OWASP Cheat Sheet: Application Logging Vocabulary](https://cheatsheetseries.owasp.org/cheatsheets/Application_Logging_Vocabulary_Cheat_Sheet.html)
--   [OWASP Cheat Sheet: Logging](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)
--   [Data Integrity: Recovering from Ransomware and Other Destructive Events](https://csrc.nist.gov/publications/detail/sp/1800-11/final)
--   [Data Integrity: Identifying and Protecting Assets Against Ransomware and Other Destructive Events](https://csrc.nist.gov/publications/detail/sp/1800-25/final)
--   [Data Integrity: Detecting and Responding to Ransomware and Other Destructive Events](https://csrc.nist.gov/publications/detail/sp/1800-26/final)
+* [OWASP Proactive Controls: C9: Implement Logging and Monitoring](https://top10proactive.owasp.org/archive/2024/the-top-10/c9-security-logging-and-monitoring/)
+* [OWASP Application Security Verification Standard: V16 Security Logging and Error Handling](https://github.com/OWASP/ASVS/blob/v5.0.0/5.0/en/0x25-V16-Security-Logging-and-Error-Handling.md)
+* [OWASP Cheat Sheet: Application Logging Vocabulary](https://cheatsheetseries.owasp.org/cheatsheets/Application_Logging_Vocabulary_Cheat_Sheet.html)
+* [OWASP Cheat Sheet: Logging](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)
+* [Data Integrity: Recovering from Ransomware and Other Destructive Events](https://csrc.nist.gov/publications/detail/sp/1800-11/final)
+* [Data Integrity: Identifying and Protecting Assets Against Ransomware and Other Destructive Events](https://csrc.nist.gov/publications/detail/sp/1800-25/final)
+* [Data Integrity: Detecting and Responding to Ransomware and Other Destructive Events](https://csrc.nist.gov/publications/detail/sp/1800-26/final)
 
 
 ## 対応する CWE の一覧
