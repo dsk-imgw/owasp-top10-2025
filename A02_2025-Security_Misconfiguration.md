@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="../../assets/css/RC-stylesheet.css" />
 
-# セキュリティ設定のミス <img src="./assets/TOP_10_Icons_Final_Security_Misconfiguration.png" style="height:80px;width:80px" align="right">
+# A02:2025 セキュリティ設定のミス <img src="./assets/TOP_10_Icons_Final_Security_Misconfiguration.png" style="height:80px;width:80px" align="right">
 
 
 ## 背景
@@ -124,4 +124,5 @@
 * [CWE-776 Improper Restriction of Recursive Entity References in DTDs ('XML Entity Expansion')](https://cwe.mitre.org/data/definitions/776.html)
 * [CWE-942 Permissive Cross-domain Policy with Untrusted Domains](https://cwe.mitre.org/data/definitions/942.html)
 * [CWE-1004 Sensitive Cookie Without 'HttpOnly' Flag](https://cwe.mitre.org/data/definitions/1004.html)
+
 * [CWE-1174 ASP.NET Misconfiguration: Improper Model Validation](https://cwe.mitre.org/data/definitions/1174.html)
