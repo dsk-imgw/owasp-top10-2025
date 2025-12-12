@@ -74,7 +74,7 @@ Top 10 で 1 位を維持し、アプリケーションの 100% で何らかの�
 
 * パブリック リソースを除き、デフォルトで拒否します。
 * アクセス制御機構は一度実装し、アプリケーション全体で再利用します。これには、クロス オリジン リソース共有 (CORS) の使用を最小限に抑えることも含まれます。
-* モデルのアクセス制御では、ユーザーが任意のレコードを作成、読み取り、更新、または削除できるようにするのではなく、レコードの所有権を強制する必要があります。
+* モデル レベルのアクセス制御では、ユーザーが任意のレコードを作成、読み取り、更新、または削除できるようにするのではなく、レコードの所有権を強制する必要があります。
 * アプリケーション固有のビジネス制限要件は、ドメイン モデルによって強制される必要があります。
 * Web サーバーのディレクトリ一覧表示を無効にし、ファイルのメタデータ (.git など) とバックアップ ファイルが Web ルート内に存在しないことを確実にします。
 * アクセス制御の失敗（例: 繰り返し失敗する場合）をログに記録し、必要に応じて管理者に警告します。
@@ -168,4 +168,5 @@ $ curl https://example.com/app/admin_getappInfo
 * [CWE-863 Incorrect Authorization](https://cwe.mitre.org/data/definitions/863.html)
 * [CWE-918 Server-Side Request Forgery (SSRF)](https://cwe.mitre.org/data/definitions/918.html)
 * [CWE-922 Insecure Storage of Sensitive Information](https://cwe.mitre.org/data/definitions/922.html)
+
 * [CWE-1275 Sensitive Cookie with Improper SameSite Attribute](https://cwe.mitre.org/data/definitions/1275.html)
