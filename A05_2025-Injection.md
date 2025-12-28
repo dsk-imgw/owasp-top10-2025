@@ -1,5 +1,3 @@
-<link rel="stylesheet" href=".・/assets/css/RC-stylesheet.css" />
-
 # A05:2025 インジェクション <img src="./assets/TOP_10_Icons_Final_Injection.png" style="height:80px;width:80px" align="right">
 
 ## 背景
@@ -54,14 +52,14 @@
 
 
 
-## 説明
+## 解説
 
 インジェクション脆弱性とは、攻撃者がプログラムの入力フィールドに悪意のあるコードやコマンド（SQL やシェル コードなど）を挿入し、あたかもシステムの一部であるかのようにシステムを騙して実行させることを可能にするシステム欠陥です。これは、非常に深刻な結果をもたらす可能性があります。
 
 アプリケーションが攻撃に対して脆弱な状況とは、以下のような状況を指します。
 
 * ユーザーが入力したデータは、アプリケーションによって検証、フィルタリング、または無害化されません。
-* コンテキスト対応エスケープのない動的クエリまたは非パラメータ化呼び出しが、インタープリタで直接使用されます。
+* 動的クエリまたはコンテキスト対応エスケープのない非パラメータ化呼び出しが、インタープリタで直接使用されます。
 * 無害化されていないデータは、追加の機密レコードを抽出するために、オブジェクト リレーショナル マッピング (ORM) 検索パラメータ内で使用されます。。
 * 潜在的に悪意のあるデータが直接使用または連結されます。SQL またはコマンドには、動的クエリ、コマンド、またはストアド プロシージャの構造と悪意のあるデータが含まれています。
 
@@ -75,18 +73,15 @@ LLM では、関連する種類のインジェクション脆弱性が一般的�
 
 インジェクションを防ぐ最善の方法は、データをコマンドやクエリから分離することです。
 
-* 推奨される選択肢は、安全な API を使用することです。これにより、インタープリタの使用を完全に回避したり、パラメータ化されたインターフェースを提供したり、オブジェクト リレーショナル マッピング ツール（ORM）に移行したりします。
-
-    **注:** パラメータ化されている場合でも、PL/SQL または T-SQL がクエリとデータを連結したり、EXECUTE IMMEDIATE または exec() を使用して悪意のあるデータを実行したりすると、ストアド プロシージャによって SQL インジェクションが発生する可能性があります。
+* 推奨される選択肢は、安全な API を使用することです。これにより、インタープリタの使用を完全に回避したり、パラメータ化されたインターフェースを提供したり、オブジェクト リレーショナル マッピング ツール（ORM）に移行したりします。**注:** パラメータ化されている場合でも、PL/SQL または T-SQL がクエリとデータを連結したり、EXECUTE IMMEDIATE または exec() を使用して悪意のあるデータを実行したりすると、ストアド プロシージャによって SQL インジェクションが発生する可能性があります。
 
 データとコマンドを分離できない場合は、以下の手法を用いて脅威を軽減できます。
 
 * サーバー側での入力検証を実施します。テキスト エリアやモバイル アプリケーションの API など、多くのアプリケーションでは特殊文字が必要となるため、これは完全な防御策ではありません。
-* 残りの動的クエリについては、そのインタープリタ固有のエスケープ構文を使用して特殊文字をエスケープします。
-
-    **注:** テーブル名、列名などの SQL 構造はエスケープできないため、ユーザーが指定した構造名は危険です。これはレポート作成ソフトウェアでよく見られる問題です。
+* 残りの動的クエリについては、そのインタープリタ固有のエスケープ構文を使用して特殊文字をエスケープします。**注:** テーブル名、列名などの SQL 構造はエスケープできないため、ユーザーが指定した構造名は危険です。これはレポート作成ソフトウェアでよく見られる問題です。
     
-    **警告:** これらの手法では、複雑な文字列を解析してエスケープする必要があるため、エラーが発生しやすくなり、基盤となるシステムに小さな変更が加えられた場合に堅牢性が損なわれます。
+
+**警告:** これらの手法では、複雑な文字列を解析してエスケープする必要があるため、エラーが発生しやすくなり、基盤となるシステムに小さな変更が加えられた場合に堅牢性が損なわれます。
 
 ## 攻撃シナリオの例
 
@@ -103,7 +98,6 @@ String query = "SELECT \* FROM accounts WHERE custID='" + request.getParameter("
 Query HQLQuery = session.createQuery("FROM accounts WHERE custID='" + request.getParameter("id") + "'");
 ```
 
-In both cases, the attacker modifies the ‘id’ parameter value in their browser to send: ' UNION SLEEP(10);--. For example:
 どちらの場合も、攻撃者は、ブラウザの `id` パラメータの値を `' UNION SLEEP(10);--` に変更して送信します。例えば、
 
 ```
@@ -111,6 +105,15 @@ http://example.com/app/accountView?id=' UNION SELECT SLEEP(10);--
 ```
 
 と変更すると、両方のクエリの意味が変わり、accounts テーブルのすべてのレコードが返されるようになります。より危険な攻撃では、データが変更または削除されたり、ストアド プロシージャが呼び出されたりする可能性があります。
+
+**シナリオ 3:** アプリケーションがユーザー入力を OS コマンドに直接渡します。
+
+```
+String cmd = "nslookup " + request.getParameter("domain");
+Runtime.getRuntime().exec(cmd);
+```
+
+攻撃者は、```example.com; cat /etc/passwd``` と入力して、サーバー上で任意のコマンドを実行します。
 
 ## 参考情報
 
@@ -165,5 +168,4 @@ http://example.com/app/accountView?id=' UNION SELECT SLEEP(10);--
 * [CWE-610 Externally Controlled Reference to a Resource in Another Sphere](https://cwe.mitre.org/data/definitions/610.html)
 * [CWE-643 Improper Neutralization of Data within XPath Expressions ('XPath Injection')](https://cwe.mitre.org/data/definitions/643.html)
 * [CWE-644 Improper Neutralization of HTTP Headers for Scripting Syntax](https://cwe.mitre.org/data/definitions/644.html)
-
 * [CWE-917 Improper Neutralization of Special Elements used in an Expression Language Statement ('Expression Language Injection')](https://cwe.mitre.org/data/definitions/917.html)
