@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="./assets/css/RC-stylesheet.css" />
-
 # OWASP について
 
 Open Worldwide Application Security Project (OWASP) は、信頼できるアプリケーションと API を組織が開発、購入、維持できるようにすることに特化したオープン コミュニティです。
