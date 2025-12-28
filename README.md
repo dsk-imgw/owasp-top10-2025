@@ -5,4 +5,5 @@
 注: 本リポジトリは、OWASP 公式とは無関係ですので、本家 OWASP などに問い合わせたりはしないでください（しないとは思いますが・・・）。
 
 - 原文
-  - https://github.com/OWASP/Top10/tree/master/2021/docs/en/2025
+  - <s>https://github.com/OWASP/Top10/tree/master/2021/docs/en/2025</s>
+  - https://owasp.org/Top10/2025/
