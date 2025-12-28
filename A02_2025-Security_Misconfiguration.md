@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="../../assets/css/RC-stylesheet.css" />
-
 # A02:2025 セキュリティ設定のミス <img src="./assets/TOP_10_Icons_Final_Security_Misconfiguration.png" style="height:80px;width:80px" align="right">
 
 
@@ -55,7 +53,7 @@
 
 
 
-## 説明
+## 解説
 
 セキュリティ設定のミスとは、システム、アプリケーション、またはクラウド サービスがセキュリティの観点から不適切に設定され、脆弱性が生じることです。
 
@@ -82,8 +80,9 @@
 * セグメント化されたアプリケーション アーキテクチャは、セグメンテーション、コンテナ化、またはクラウド セキュリティ グループ（ACL）によって、コンポーネントまたはテナント間の効果的かつセキュアな分離を実現します。
 * セキュリティ ヘッダーなどのセキュリティ ディレクティブをクライアントに送信します。
 * すべての環境における構成と設定の有効性を検証する自動プロセス。
-* 過剰なエラーメッセージをバックアップとして傍受するための中央構成を事前対応的に追加します。
+* 過剰なエラーメッセージをバックアップとして傍受するための中央構成を事前対処的に追加します。
 * これらの検証が自動化されていない場合は、少なくとも年に 1 回は手動で検証する必要があります。
+* コード、構成ファイル、パイプラインに静的な鍵やシークレット情報を埋め込む代わりに、基盤となるプラットフォームによって提供される ID フェデレーション、有効期間の短い資格情報、またはロール ベースのアクセス機構を使用します。
 
 ## 攻撃シナリオの例
 
@@ -98,12 +97,12 @@
 
 ## 参考情報
 
-* OWASP Testing Guide: Configuration Management
-* OWASP Testing Guide: Testing for Error Codes
-* Application Security Verification Standard 5.0.0
-* NIST Guide to General Server Hardening
-* CIS Security Configuration Guides/Benchmarks
-* Amazon S3 Bucket Discovery and Enumeration
+* [OWASP Testing Guide: Configuration Management](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/README)
+* [OWASP Testing Guide: Testing for Error Codes](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/01-Testing_For_Improper_Error_Handling)
+* [Application Security Verification Standard V13 Configuration](https://github.com/OWASP/ASVS/blob/master/5.0/en/0x22-V13-Configuration.md)
+* [NIST Guide to General Server Hardening](https://csrc.nist.gov/publications/detail/sp/800-123/final)
+* [CIS Security Configuration Guides/Benchmarks](https://www.cisecurity.org/cis-benchmarks/)
+* [Amazon S3 Bucket Discovery and Enumeration](https://blog.websecurify.com/2017/10/aws-s3-bucket-discovery.html)
 * ScienceDirect: Security Misconfiguration
 
 
@@ -124,5 +123,4 @@
 * [CWE-776 Improper Restriction of Recursive Entity References in DTDs ('XML Entity Expansion')](https://cwe.mitre.org/data/definitions/776.html)
 * [CWE-942 Permissive Cross-domain Policy with Untrusted Domains](https://cwe.mitre.org/data/definitions/942.html)
 * [CWE-1004 Sensitive Cookie Without 'HttpOnly' Flag](https://cwe.mitre.org/data/definitions/1004.html)
-
 * [CWE-1174 ASP.NET Misconfiguration: Improper Model Validation](https://cwe.mitre.org/data/definitions/1174.html)
