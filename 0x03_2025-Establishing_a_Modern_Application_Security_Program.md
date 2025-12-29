@@ -54,7 +54,7 @@ OWASP Top 10 のリストは、対象となるトピックにおける最も重�
 * セキュリティ プログラムに関するガイドラインやセキュリティ要件（SDLC、ベスト プラクティスなど）を含む要件について、内部または外部の開発者と交渉します。
 * 計画・設計フェーズを含む、すべての技術要件の達成状況を評価します。
 * 設計、セキュリティ、サービス レベル契約 (SLA) を含む、すべての技術要件について交渉します。
-* [OWASP Secure Software Contract Annex](https://owasp.org/www-community/OWASP_Secure_Software_Contract_Annex)<sup>(*1)</sup> などのテンプレートとチェック リストを採用します。<br>**\*1: 注** *この附属書は米国の契約法に関するものです。サンプルの附属書を使用する前に、必ず資格のある法律専門家に相談する必要があります。*
+* [OWASP Secure Software Contract Annex](https://owasp.org/www-community/OWASP_Secure_Software_Contract_Annex)<sup>(*1)</sup> などのテンプレートとチェック リストを採用します。<br>**(\*1): 注** *この附属書は米国の契約法に関するものです。サンプルの附属書を使用する前に、必ず資格のある法律専門家に相談する必要があります。*
 
 ### 計画・設計フェーズ
 
@@ -226,5 +226,6 @@ OWASP Top 10 の使用が適切な場合の推奨事項を以下に示します�
 
 
 アプリケーション セキュリティ標準の導入を検討されている方は、[OWASP Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/) (ASVS) の使用を推奨します。ASVS は検証とテストが可能なように設計されており、セキュアな開発ライフ サイクルのあらゆる段階で使用できます。
+
 
 ツール ベンダーにとって、ASVS は唯一の選択肢です。[A06:2025-セキュリティが確保されていない設計](A06_2025-Insecure_Design.md) に記載されているように、OWASP Top 10 のリスクのいくつかは、その性質上、ツールでは OWASP Top 10 を包括的に検出、テスト、または防御することはできません。OWASP は、OWASP Top 10 を完全に網羅しているという主張を推奨しません。それは、単に真実ではないからです。
