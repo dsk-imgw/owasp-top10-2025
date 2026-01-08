@@ -292,7 +292,7 @@ Java、C#、JavaScript/TypeScript (node.js)、Go、そして「安全な」Rust 
 
 ### 防止方法
 
-コードを書くすべての人に、AI を使用する際に以下のの点を考慮することを強く推奨します。
+コードを書くすべての人に、AI を使用する際に以下の点を考慮することを強く推奨します。
 
 * 提出するすべてのコードは、たとえ AI によって書かれたものやオンライン フォーラムからコピーしたものであっても、完全に読み理解できる必要があります。コミットするすべてのコードに対して、あなたは責任を負います。
 * AI 支援コードはすべて、脆弱性がないか徹底的にレビューする必要があります。理想的には、自身の目で確認するだけでなく、この目的のために開発されたセキュリティ ツール（静的解析など）も活用します。 [OWASP Cheat Sheet Series: Secure Code Review](https://cheatsheetseries.owasp.org/cheatsheets/Secure_Code_Review_Cheat_Sheet.html) に記載されている従来のコード レビュー手法の活用も検討します。
@@ -317,3 +317,4 @@ Java、C#、JavaScript/TypeScript (node.js)、Go、そして「安全な」Rust 
 
 
 -なし-
+
