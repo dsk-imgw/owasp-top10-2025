@@ -83,7 +83,7 @@
 * ログイン失敗回数を制限するか、遅延を増やします。ただし、サービス拒否（DoS）シナリオを作成しないよう注意します。クレデンシャル スタッフィング、総当たり攻撃、その他の攻撃が検知または疑われる場合は、すべての失敗を記録し、管理者に警告します。
 * ログイン後に高エントロピーの新しいランダム セッション ID を生成するような、サーバー側のセキュアな組み込みセッション マネージャーを使用します。セッション ID は URL に含めず、セキュアな Cookie に安全に保存し、ログアウト、アイドル タイムアウト、および絶対タイム アウト後に無効にする必要があります。
 * 認証、ID、およびセッション管理には、既成の信頼性の高いシステムを使用するのが理想的です。可能な限り、堅牢化され十分にテストされたシステムを購入して活用することで、このリスクを移転します。
-* 提供された資格情報の使用目的を検証します（例: JWTの場合、```aud```、```iss``` クレーム、スコープを確認します）。
+* 提供された資格情報の使用目的を検証します（例: JWT の場合、```aud```、```iss``` クレーム、スコープを確認します）。
 
 ## 攻撃シナリオの例
 
@@ -136,4 +136,5 @@
 * [CWE-1390 Weak Authentication](https://cwe.mitre.org/data/definitions/1390.html)
 * [CWE-1391 Use of Weak Credentials](https://cwe.mitre.org/data/definitions/1391.html)
 * [CWE-1392 Use of Default Credentials](https://cwe.mitre.org/data/definitions/1392.html)
+
 * [CWE-1393 Use of Default Password](https://cwe.mitre.org/data/definitions/1393.html)
