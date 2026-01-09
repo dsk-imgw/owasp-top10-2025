@@ -60,7 +60,7 @@
 
 * ユーザーが入力したデータは、アプリケーションによって検証、フィルタリング、または無害化されません。
 * 動的クエリまたはコンテキスト対応エスケープのない非パラメータ化呼び出しが、インタープリタで直接使用されます。
-* 無害化されていないデータは、追加の機密レコードを抽出するために、オブジェクト リレーショナル マッピング (ORM) 検索パラメータ内で使用されます。。
+* 無害化されていないデータは、追加の機密レコードを抽出するために、オブジェクト リレーショナル マッピング (ORM) 検索パラメータ内で使用されます。
 * 潜在的に悪意のあるデータが直接使用または連結されます。SQL またはコマンドには、動的クエリ、コマンド、またはストアド プロシージャの構造と悪意のあるデータが含まれています。
 
 一般的なインジェクションには、SQL、NoSQL、OS コマンド、オブジェクト リレーショナル マッピング (ORM)、LDAP、式言語 (EL) またはオブジェクト グラフ ナビゲーション ライブラリ (OGNL) インジェクションなどがあります。この概念はすべてのインタープリタで同一です。すべてのパラメータ、ヘッダー、URL、Cookie、JSON、SOAP、および XML データ入力のソース コード レビューと自動テスト（ファジングを含む）を組み合わせることで、最も効果的に検出できます。静的（SAST）、動的（DAST）、および対話型（IAST）アプリケーション セキュリティ テスト ツールを CI/CD パイプラインに追加することでも、本番環境へのデプロイ前にインジェクション脆弱性を特定するのに役立ちます。
@@ -168,4 +168,5 @@ Runtime.getRuntime().exec(cmd);
 * [CWE-610 Externally Controlled Reference to a Resource in Another Sphere](https://cwe.mitre.org/data/definitions/610.html)
 * [CWE-643 Improper Neutralization of Data within XPath Expressions ('XPath Injection')](https://cwe.mitre.org/data/definitions/643.html)
 * [CWE-644 Improper Neutralization of HTTP Headers for Scripting Syntax](https://cwe.mitre.org/data/definitions/644.html)
+
 * [CWE-917 Improper Neutralization of Special Elements used in an Expression Language Statement ('Expression Language Injection')](https://cwe.mitre.org/data/definitions/917.html)
